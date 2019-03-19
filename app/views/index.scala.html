@@ -1,0 +1,30 @@
+@import play.mvc.Http.Request
+@import helper._
+@import controllers._
+@(form: Form[Person])
+
+
+@main("Welcome to Play") {
+
+	@*<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self'; script-src 'self' ">*@
+
+	<section id="top">
+	  <div class="wrapper">
+		
+		@helper.form(action = helper.CSRF(routes.HomeController.addPerson)){
+			@helper.CSRF.formField
+			@helper.inputText(form("name"))
+			<button type="submit">Add Person</button>
+		}
+	  
+	  </div>
+	</section>
+
+	<script type='text/javascript' src='@routes.Assets.at("index.js")'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<div class="wrapper">
+		<ul id="persons"></ul>
+	</div>
+	
+}
